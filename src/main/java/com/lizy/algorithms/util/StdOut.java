@@ -1,4 +1,4 @@
-package com.lizy.algorithms.controller;
+package com.lizy.algorithms.util;
 
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
