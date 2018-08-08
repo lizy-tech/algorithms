@@ -12,9 +12,7 @@ public final class StdIn {
     private static final Pattern EVERYTHING_PATTERN = Pattern.compile("\\A");
     private static Scanner scanner;
 
-    private StdIn() {
-
-    }
+    private StdIn() {}
 
     public static boolean isEmpty(){
         return !scanner.hasNext();
