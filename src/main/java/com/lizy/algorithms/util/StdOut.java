@@ -34,6 +34,10 @@ public class StdOut {
         out.println();
     }
 
+    public static void println(Object x) {
+        out.println(x);
+    }
+
     public static void println(boolean x) {
         out.println(x);
     }
@@ -65,8 +69,6 @@ public class StdOut {
     public static void println(byte x) {
         out.println(x);
     }
-
-    public static void println(String x){out.println(x);}
 
     public static void print() {
         out.flush();
@@ -128,7 +130,7 @@ public class StdOut {
     }
 
     public static void main(String[] args) {
-//        StdOut.println("Test");
+        StdOut.println("Test");
         StdOut.println(17);
         StdOut.println(true);
         StdOut.printf("%.6f\n", 1.0 / 7.0);

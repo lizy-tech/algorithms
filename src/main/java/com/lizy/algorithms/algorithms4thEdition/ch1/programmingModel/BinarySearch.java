@@ -1,4 +1,4 @@
-package com.lizy.algorithms.algorithms4thEdition.chapter_one_fundamentals;
+package com.lizy.algorithms.algorithms4thEdition.ch1.programmingModel;
 
 public class BinarySearch {
     private BinarySearch(){}
