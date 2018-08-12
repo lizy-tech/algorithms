@@ -66,6 +66,8 @@ public class StdOut {
         out.println(x);
     }
 
+    public static void println(String x){out.println(x);}
+
     public static void print() {
         out.flush();
     }
