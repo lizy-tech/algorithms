@@ -28,7 +28,7 @@ public class StdRandom {
     public static int uniform(int n) {
         if(n<=0)
             throw new IllegalArgumentException("argument must be positive: " + n);
-        return random.nextInt();
+        return random.nextInt(n);
     }
 
     public static long uniform(long n) {
