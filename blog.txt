@@ -1,0 +1,7 @@
+fileName : java Comparable和Comparator
+
+java对象排序时，对象的比较，主要有两种共实现方式
+（1）对象实现Comparable接口，需要在对象内部实现  compareTo()方法；
+（2）自定义比较器，实现Comparator接口
+
+https://blog.csdn.net/tolcf/article/details/52229068
