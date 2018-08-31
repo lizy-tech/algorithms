@@ -1,5 +1,7 @@
 package com.lizy.algorithms.algorithms4thEdition.ch3.ch3_3;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -118,8 +120,8 @@ public class BinaryTree<Value extends Comparable<Value>> {
         }
     }
 
-    //后序遍历的非递归实现
-    public void postOrder(Node root) {
+    //后序遍历的非递归实现1
+    public void postOrder1(Node root) {
         Stack<Node> stack = new Stack<>();
         Node p = root;
         Node tmp = null;
@@ -142,5 +144,90 @@ public class BinaryTree<Value extends Comparable<Value>> {
                 }
             }
         }
+    }
+
+    //后序遍历的非递归实现2
+    public void postOrder2(Node root) {
+        Stack<Node> stack = new Stack<>();
+        Node cur;
+        Node p = null;
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            cur = stack.peek();
+            if ((cur.lchild == null && cur.rchild == null) ||
+                    (p != null && (p == cur.lchild || p == cur.rchild))) {
+                System.out.println(cur.val);
+                stack.pop();
+                p = cur;
+            } else {
+                if (cur.rchild != null) {
+                    stack.push(cur.rchild);
+                }
+                if (cur.lchild != null) {
+                    stack.push(cur.lchild);
+                }
+            }
+        }
+    }
+
+    //层次遍历
+    public void levelOrder(Node root) {
+        LinkedList<Node> queue = new LinkedList<>();
+        queue.addLast(root);
+        while (!queue.isEmpty()) {
+            Node p = queue.pop();
+            System.out.println(p.val);
+            if (p.lchild != null) {
+                queue.addLast(p.lchild);
+            }
+            if (p.rchild != null) {
+                queue.addLast(p.rchild);
+            }
+        }
+    }
+
+    //二叉树的最大宽度
+    public int maxWidth(Node root) {
+        if(root == null)
+            return 0;
+        int result = 0;
+        LinkedList<Node> queue = new LinkedList<>();
+        queue.addLast(root);
+        while (!queue.isEmpty()) {
+            int count = queue.size();
+            result = Math.max(result, count);
+            while (count>0) {
+                Node cur = queue.poll();
+                if (cur.lchild != null) {
+                    queue.addLast(cur.lchild);
+                }
+                if (cur.rchild != null) {
+                    queue.addLast(cur.rchild);
+                }
+            }
+        }
+        return result;
+    }
+
+    public int getMaxDepth(Node root) {
+        if (root == null) {
+            return 0;
+        } else {
+            int left = getMaxDepth(root.lchild);
+            int right = getMaxDepth(root.rchild);
+            return 1 + Math.max(left, right);
+        }
+    }
+
+    //二叉树叶子结点数目
+    public int getCountLeaf(Node root) {
+        int count;
+        if(root == null)
+            count = 0;
+        else if(root.lchild == null && root.rchild == null)
+            count = 1;
+        else
+            count = getCountLeaf(root.rchild) + getCountLeaf(root.lchild);
+        return count;
     }
 }
