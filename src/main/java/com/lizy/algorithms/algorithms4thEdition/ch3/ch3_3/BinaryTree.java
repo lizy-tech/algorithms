@@ -230,4 +230,41 @@ public class BinaryTree<Value extends Comparable<Value>> {
             count = getCountLeaf(root.rchild) + getCountLeaf(root.lchild);
         return count;
     }
+
+    //判断树中是否存在某个结点
+    public boolean hasNode(Node root, Node pNode) {
+        if (root == pNode) {
+            return true;
+        }
+        boolean flag = false;
+        if (root.lchild != null) {
+            flag = hasNode(root.lchild,pNode);
+        }
+        if (root.rchild != null) {
+            flag = hasNode(root.rchild, pNode);
+        }
+        return flag;
+    }
+
+    //根结点到指定结点的路径
+    public boolean getPath(Node root, Node pNode,LinkedList<Node> path) {
+        path.push(root);
+        if (root == pNode) {
+            return true;
+        }
+        if (hasNode(root, pNode) == false) {
+            return false;
+        }
+        boolean found = false;
+        if (root.lchild != null) {
+            found = getPath(root.lchild, pNode, path);
+        }
+        if (!found && root.rchild != null) {
+            found = getPath(root.rchild, pNode, path);
+        }
+        if (!found) {
+            path.remove(path.size() - 1);
+        }
+        return found;
+    }
 }
