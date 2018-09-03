@@ -267,4 +267,31 @@ public class BinaryTree<Value extends Comparable<Value>> {
         }
         return found;
     }
+
+    //二叉树中两个结点最近的公共父节点
+    public Node findLCA(Node root, Node A, Node B) {
+        if(root == null)
+            return null;
+        if(root == A || root == B)
+            return root;
+        Node L = findLCA(root.lchild, A, B);
+        Node R = findLCA(root.rchild, A, B);
+        if (L != null && R != null) {
+            return root;
+        } else {
+            return L != null ? L : R;
+        }
+    }
+
+    //二叉树的翻转
+    public Node invertTree(Node root) {
+        if(root == null)
+            return root;
+        Node temp = root.lchild;
+        root.lchild = root.rchild;
+        root.rchild = temp;
+        invertTree(root.lchild);
+        invertTree(root.rchild);
+        return root;
+    }
 }
