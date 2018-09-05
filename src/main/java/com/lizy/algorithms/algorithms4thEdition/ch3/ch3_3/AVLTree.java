@@ -1,5 +1,7 @@
 package com.lizy.algorithms.algorithms4thEdition.ch3.ch3_3;
 
+import com.lizy.algorithms.util.In;
+
 /**
  * @author lizy@19pay.com.cn
  * @date 2018-9-3 17:07
@@ -212,6 +214,12 @@ public class AVLTree<Value extends Comparable<Value>> {
             }
         }
         return left;
+    }
+
+    public static void main(String[] args) {
+        AVLTree<Integer> avlTree = new AVLTree<>();
+        avlTree.insert(1);
+
     }
 
 }
