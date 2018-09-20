@@ -9,10 +9,10 @@ import java.util.Scanner;
 public class GraphAL<K,V extends Comparable<V>> {
     private VertexNode[] adjList;//保存邻接表的头结点
     int n,e; //图中的顶点数n和边数e
-    boolean[] visit;//判断顶点是否被访问过
+    boolean[] visit = new boolean[n];//判断顶点是否被访问过
 
-    class EdgeNode{//弧的结点结构类型
-        int adjVertex;//弧的终点位置
+    class EdgeNode{//弧---链表
+        int adjVertex;//当前弧指向的图中邻接表的头结点的位置
         int weight; //权重
         EdgeNode nextArc;//指向下一条弧的指针
     }
@@ -28,9 +28,73 @@ public class GraphAL<K,V extends Comparable<V>> {
         this.e = e;
         adjList = new VertexNode[e + 1];
         visit = new boolean[e + 1];
-        for (int i = 0; i < e; i++) {
+        for (int i = 0; i < n; i++) {
             visit[i] = false;
         }
+    }
+
+    public void DFS(){
+        for (int i = 0; i < n; i++) {
+            visit[i] = false;
+        }
+        System.out.println("DFS: ");
+        for (int i = 0; i < n; i++) {
+            if (!visit[i]) {
+                DFS(i, visit);
+            }
+        }
+    }
+
+    public void DFS(int i, boolean[] visit) {
+        visit[i] = true;
+        System.out.println(" -> " + adjList[i].name);
+        EdgeNode node = adjList[i].firstArc;
+        while (node != null) {
+            if (!visit[node.adjVertex]) {
+                DFS(node.adjVertex, visit);
+            }
+            node = node.nextArc;
+        }
+    }
+
+    public void BFS() {
+        int head = 0;
+        int rear = 0;
+        int[] queue = new int[n];
+        for (int i = 0; i < n; i++) {
+            visit[i] = false;
+        }
+        System.out.println("BFS: ");
+        for (int i = 0; i < n; i++) {
+            if (!visit[i]) {
+                visit[i] = true;
+                System.out.println(" -> " + adjList[i].name);
+                queue[rear++] = i;
+                while (head != rear) {//队列不为空
+                    int j = queue[head++];
+                    EdgeNode node = adjList[j].firstArc;
+                    while (node != null) {
+                        int k = node.adjVertex;
+                        if (!visit[k]) {
+                            visit[k] = true;
+                            System.out.println(" -> " + adjList[k].name);
+                            queue[rear++] = k;
+                        }
+                        node = node.nextArc;
+                    }
+                }
+            }
+        }
+    }
+
+    public void addEdge(int v, int w) {
+        VertexNode nodeV = adjList[v];
+        EdgeNode edgeNodeV = new EdgeNode();
+        EdgeNode firstEdge = nodeV.firstArc;
+        edgeNodeV.adjVertex = w;
+        edgeNodeV.nextArc = firstEdge;
+        nodeV.firstArc = edgeNodeV;
+
     }
 
     public static GraphAL<String, String> graphAL;
