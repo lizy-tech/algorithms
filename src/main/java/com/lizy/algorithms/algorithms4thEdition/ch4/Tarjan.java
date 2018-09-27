@@ -15,7 +15,7 @@ public class Tarjan {
     private int count;//强连通分量的数量
     private Stack<Integer> stack;
     private boolean[] inStack;
-    private int co;
+    private int time;
 
     private List<ArrayList<Integer>> result;
 
@@ -34,7 +34,7 @@ public class Tarjan {
     }
 
     public void tarjan(Digraph G, int v) {
-        low[v] = dfn[v] = co++;
+        low[v] = dfn[v] = time++;
         marked[v] = true;
         inStack[v] = true;
         stack.push(v);

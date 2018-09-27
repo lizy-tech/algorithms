@@ -21,6 +21,39 @@ public class GraphAL<K,V extends Comparable<V>> {
         K name;//顶点标识
         V data;//顶点存储信息
         EdgeNode firstArc = null;//指向第一条弧
+
+        public VertexNode() {
+        }
+
+        public VertexNode(K name, V data, EdgeNode firstArc) {
+            this.name = name;
+            this.data = data;
+            this.firstArc = firstArc;
+        }
+
+        public K getName() {
+            return name;
+        }
+
+        public void setName(K name) {
+            this.name = name;
+        }
+
+        public V getData() {
+            return data;
+        }
+
+        public void setData(V data) {
+            this.data = data;
+        }
+
+        public EdgeNode getFirstArc() {
+            return firstArc;
+        }
+
+        public void setFirstArc(EdgeNode firstArc) {
+            this.firstArc = firstArc;
+        }
     }
 
     public GraphAL(int n, int e) {
@@ -152,9 +185,22 @@ public class GraphAL<K,V extends Comparable<V>> {
         }
     }
 
-    public static void main(String[] args) {
-        GraphAL<String,String> graphAL = new GraphAL<>(1, 2);
-        graphAL.createGraph();
-        graphAL.outputGraph();
+    public void run(){
+        GraphAL<String,String> traphAL = new GraphAL<>(1, 2);
+        VertexNode<String, String> vertexNode = new VertexNode();
+        vertexNode.name = "1";
+        traphAL.adjList[1] = new VertexNode();
+
     }
+
+    public static void main(String[] args) {
+        GraphAL<String,String> traphAL = new GraphAL<>(1, 2);
+        traphAL.createGraph();
+        traphAL.outputGraph();
+
+//        graphAL.adjList[0] = new VertexNode();
+    }
+}
+enum SingleClass{
+    INSTANCE;
 }

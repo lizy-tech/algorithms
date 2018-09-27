@@ -2,7 +2,9 @@ package com.lizy.algorithms.algorithms4thEdition.ch4;
 
 import com.lizy.algorithms.algorithms4thEdition.ch1.bagsQueuesStacks.Bag;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author lizy@19pay.com.cn
@@ -11,14 +13,16 @@ import java.util.Iterator;
 public class Digraph {
     private final int V;
     private  int E;
-    private Bag<Integer>[] adj;
+    private List<Integer>[] adj;
+    private int[] inDegree;
 
     public Digraph(int V) {
         this.V = V;
         this.E = 0;
-        adj = (Bag<Integer>[]) new Bag[V];
+        inDegree = new int[V];
+        adj = (List<Integer>[]) new ArrayList[V];
         for (int v = 0; v < V; v++) {
-            adj[v] = new Bag<Integer>();
+            adj[v] = new ArrayList<>();
         }
     }
 
@@ -33,6 +37,11 @@ public class Digraph {
     public void addEdge(int v, int w) {
         adj[v].add(w);
         E++;
+        inDegree[w]++;
+    }
+
+    public int getInDegree(int w) {
+        return inDegree[w];
     }
 
     public Iterable<Integer> adj(int v) {

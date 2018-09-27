@@ -52,26 +52,6 @@ public class DepthFirstOrder {
         return reversePost;
     }
 
-    class Ta<K> implements Iterator<K> {
-
-        @Override
-        public boolean hasNext() {
-            return false;
-        }
-
-        @Override
-        public K next() {
-            return null;
-        }
-    }
-
-    class Tb<K> implements Iterable<K> {
-        @Override
-        public Iterator<K> iterator() {
-            return null;
-        }
-    }
-
 
 
 }
