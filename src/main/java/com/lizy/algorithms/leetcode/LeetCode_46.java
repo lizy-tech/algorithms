@@ -106,7 +106,7 @@ public class LeetCode_46 {
         for (int i = 0; i < n; i++) {
             nums[i] = sc.nextInt();
         }
-        permute3(nums);
+        permute(nums);
         int a = 0;
     }
 }

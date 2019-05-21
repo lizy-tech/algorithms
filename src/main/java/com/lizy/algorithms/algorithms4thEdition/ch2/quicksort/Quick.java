@@ -75,4 +75,40 @@ public class Quick {
             StdOut.println(a[i]);
         }
     }
+
+    public static void quick_sort(int[] a, int s, int t) {
+        int i=s,j=t;
+        int temp;
+        if (s < t) {
+            temp = a[s];
+            while (i != j) {
+                while (j>i && a[j] > temp)
+                    j--;
+                if (i < j) {
+                    a[i] = a[j];
+                    i++;
+                }
+                while (i < j && a[i] < temp) {
+                    i++;
+                }
+                if (i < j) {
+                    a[j] = a[i];
+                    j--;
+                }
+            }
+            a[i] = temp;
+            quick_sort(a, s, i - 1);
+            quick_sort(a, i + 1, t);
+        }
+    }
+
+    public static void main(String[] args) {
+        int a[] = {6, 6, 7, 4, 5, 4, 4, 6, 9, 9, 8};
+        quick_sort(a, 0, a.length-1);
+        for (int i = 0; i < a.length; i++) {
+            System.out.println(a[i]);
+        }
+
+        int len = a.length;
+    }
 }
